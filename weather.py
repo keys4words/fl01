@@ -1,9 +1,11 @@
 import requests
 
+from config import KEY
+
 def weather_by_city(city_name):
     weather_url = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
     params = {
-        "key": "1f12cc67ad5642faaee205719200705",
+        "key": KEY,
         "q": city_name,
         "format": "json",
         "num_of_days": 5,
