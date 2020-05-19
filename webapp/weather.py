@@ -1,12 +1,13 @@
 import requests
 
-from config import KEY
+from webapp.config import WEATHER_API_KEY, WEATHER_DEFAULT_CITY
+from flask import current_app
 
 def weather_by_city(city_name):
     weather_url = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
     params = {
-        "key": KEY,
-        "q": city_name,
+        "key": current_app.config['WEATHER_API_KEY'],
+        "q": current_app.config['WEATHER_DEFAULT_CITY'],
         "format": "json",
         "num_of_days": 5,
         "lang": "ru"
@@ -27,5 +28,5 @@ def weather_by_city(city_name):
     return False
 
 if __name__ == '__main__':
-    w = weather_by_city('Moscow, Russia')
+    w = weather_by_city(current_app.config['WEATHER_DEFAULT_CITY'])
     print(w)
