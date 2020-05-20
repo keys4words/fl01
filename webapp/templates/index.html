@@ -28,7 +28,7 @@
                     <h4>
                         <a href="{{ el.url  }}">{{ el.title }}</a>
                     </h4>
-                    <p>{{ el.published }}</p>
+                    <p>{{ el.published.strftime('%d.%m.%Y') }}</p>
                     <hr>
                 {% endfor %}
 
