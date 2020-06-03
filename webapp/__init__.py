@@ -17,3 +17,6 @@ def create_app():
         return render_template('index.html', page_title=page_title, weather=weather, news_list=news_list)
 
     return app
+
+
+#set FLASK_APP=webapp && set FLASK_ENV=development && flask run
