@@ -19,17 +19,23 @@ def get_python_news():
     if html:
         soup = BeautifulSoup(html, 'html.parser')
         all_news = soup.find('ul', class_='list-recent-posts').findAll('li')
-        res = []
+        # res = []
         for news_item in all_news:
             title = news_item.find('a').text
             url = news_item.find('a')['href']
-            published = news_item.find('time').text
+            published = news_item.find('time')['datetime']
             try:
                 published = datetime.strptime(published, '%Y-%m-%d')
             except ValueError:
                 published = datetime.now()
 
+            # res.append({
+            #     'title': title,
+            #     'url': url,
+            #     'published': published
+            # })
             save_news(title, url, published)
+        #return res
         
 
 def save_news(title, url, published):

@@ -2,6 +2,7 @@ from flask import Flask, render_template
 
 from webapp.weather import weather_by_city
 from webapp.model import db, News
+from webapp.news import get_python_news
 
 
 def create_app():
@@ -14,9 +15,10 @@ def create_app():
         page_title = 'My weather forecast'
         weather = weather_by_city(app.config['WEATHER_DEFAULT_CITY'])
         news_list = News.query.order_by(News.published.desc()).all()
+        #news_list = get_python_news()
         return render_template('index.html', page_title=page_title, weather=weather, news_list=news_list)
 
     return app
 
 
-#set FLASK_APP=webapp && set FLASK_ENV=development && flask run
+#set FLASK_APP=webapp && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
