@@ -1,19 +1,10 @@
-from datetime import datetime
 import requests
-
+from datetime import datetime
 from bs4 import BeautifulSoup
 
 from webapp.db import db
 from webapp.news.models import News
 
-def get_html(url):
-    try:
-        res = requests.get(url)
-        res.raise_for_status()
-        return res.text
-    except(requests.RequestException, ValueError):
-        print('Network error')
-        return False
 
 def get_python_news():
     html = get_html('https://www.python.org/blogs/')
@@ -39,6 +30,15 @@ def get_python_news():
         #return res
         
 
+def get_html(url):
+    try:
+        res = requests.get(url)
+        res.raise_for_status()
+        return res.text
+    except(requests.RequestException, ValueError):
+        print('Network error')
+        return False
+
 def save_news(title, url, published):
     news_exists = News.query.filter(News.url == url).count()
     print(news_exists)
@@ -46,5 +46,4 @@ def save_news(title, url, published):
         news_item = News(title=title, url=url, published=published)
         db.session.add(news_item)
         db.session.commit()
-    
     
