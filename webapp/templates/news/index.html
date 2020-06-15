@@ -14,10 +14,10 @@
     {% endif %}
     {% endwith %}
 
-    <h2>Latest news from <a href='#'>python.org</a>:</h2>
+    <h2>Latest news from <a href='https://www.python.org/'>python.org</a>:</h2>
     {% for el in news_list %}
     <h4>
-      <a href="{{ el.url  }}">{{ el.title }}</a>
+      <a href="{{ url_for('news.single_news', news_id=el.id) }}">{{ el.title }}</a>
     </h4>
     <p>{{ el.published.strftime('%d.%m.%Y') }}</p>
     <hr>
