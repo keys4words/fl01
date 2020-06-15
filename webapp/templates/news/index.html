@@ -19,7 +19,7 @@
     <h4>
       <a href="{{ url_for('news.single_news', news_id=el.id) }}">{{ el.title }}</a>
     </h4>
-    <p>{{ el.published.strftime('%d.%m.%Y') }}</p>
+    <p>{{ el.published.strftime('%d.%m.%Y') }} | Комментарии: {{   el.comments_count()  }}</p>
     <hr>
     {% endfor %}
 

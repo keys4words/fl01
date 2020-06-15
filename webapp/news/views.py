@@ -2,6 +2,7 @@ from flask import abort, Blueprint, current_app, render_template
 
 from webapp.weather import weather_by_city
 from webapp.news.models import News
+from webapp.news.forms import CommentForm
 
 blueprint = Blueprint('news', __name__)
 
@@ -19,5 +20,9 @@ def single_news(news_id):
 
     if not my_news:
         abort(404)
+    comment_form = CommentForm(news_id=my_news.id)
+    return render_template('news/single_news.html', page_title=my_news.title, news=my_news, comment_form=comment_form)
 
-    return render_template('news/single_news.html', page_title=my_news.title, news=my_news)
+@blueprint.route('/news/comment', methods=['POST'])
+def add_comment():
+    pass
