@@ -19,7 +19,7 @@
     </div>
     {% endfor %}
     {% endif %}
-
+    {% if current_user.is_authenticated %}
     <form action="{{  url_for('news.add_comment') }}" method="POST">
       {{ comment_form.hidden_tag() }}
       <div class="form-group">
@@ -28,7 +28,9 @@
       </div>
       {{ comment_form.submit() }}
     </form>
-
+    {% else %}
+      <p><a href="{{ url_for('user.login', next=request.full_path) }}">Авторизуйтесь</a> чтобы добавить комментарий</p>
+    {% endif %}
 
   </div>
   <div class="col-4">
