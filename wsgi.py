@@ -1,3 +1,3 @@
-from webapp import create_app
+from webapp.__init__ import create_app
 
 app = create_app
